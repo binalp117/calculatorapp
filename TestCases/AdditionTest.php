@@ -79,5 +79,13 @@ class AdditionTest extends TestCase
         $calc->setOperation('add');
         $this->assertEquals($calc->process(), 12);
     }
+
+    public function testAdditionOfNumbersWithNegativeNumbers()
+    {
+        $calc = new CalculatorApp(new CalculatorImplementation);
+        $calc->processOperands('\\,\\2,7,-3,5,-2,');
+        $calc->setOperation('add');
+        $this->assertEquals($calc->process(), "Negative numbers not allowed.");
+    }
 }
 ?>

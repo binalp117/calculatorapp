@@ -10,6 +10,7 @@ Class CalculatorApp
 	protected $calculator;
 	protected $operationName;
 	protected $delimiters = ['\n',';','\\'];
+	protected $operands;
 
 	public function __construct(CalculatorInterface $calculator)
 	{
@@ -27,10 +28,12 @@ Class CalculatorApp
 	{
 		$number1 = 0;
 		$number2 = 0;
+		$numbers = [];
 		if($input != "") {
 			$input = $this->replaceDemiliters($input);
 			$numbers = explode(',', $input);		
 
+			// check negative numbers
 			if(sizeof($numbers) > 0) {
 				$number1 = intval($numbers[0]);
 
@@ -42,6 +45,7 @@ Class CalculatorApp
 			}
 		}	
 
+		$this->operands = $numbers;
 		$this->setOperands($number1, $number2);
 	}
 
@@ -54,6 +58,11 @@ Class CalculatorApp
 	// Function to process the calculation
     public function process()
     {	
+    	$negativeNumbers = $this->checkNegativeNumbers();
+
+    	if(sizeof($negativeNumbers) > 0) {
+    		return "Negative numbers not allowed.";
+    	}
     	$result = 0;
 		switch ($this->operationName) {
 			case 'sum':
@@ -92,6 +101,21 @@ Class CalculatorApp
 		}
 
 		return $string;
+	}
+
+	protected function checkNegativeNumbers()
+	{
+		$negativeNumbers = [];
+
+		foreach ($this->operands as $value) {
+			if($value < 0) {
+				if(!in_array($value, $negativeNumbers)) {
+					$negativeNumbers[] = $value;
+				}
+			}
+		}
+
+		return $negativeNumbers;
 	}
 }
 ?>
