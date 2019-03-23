@@ -55,5 +55,21 @@ class SubstractTest extends TestCase
         $calc->setOperation('substract');
         $this->assertEquals($calc->process(), -125);
     }
+
+    public function testAdditionOfNumbersWithBreakline()
+    {
+        $calc = new CalculatorApp(new CalculatorImplementation);
+        $calc->processOperands('2\n3,4');
+        $calc->setOperation('substract');
+        $this->assertEquals($calc->process(), -5);
+    }
+
+    public function testAdditionOfNumbersWithBreaklineMore()
+    {
+        $calc = new CalculatorApp(new CalculatorImplementation);
+        $calc->processOperands('2\n3,4,5\n8');
+        $calc->setOperation('substract');
+        $this->assertEquals($calc->process(), -18);
+    }
 }
 ?>

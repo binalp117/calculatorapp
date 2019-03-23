@@ -27,6 +27,9 @@ Class CalculatorApp
 		$number1 = 0;
 		$number2 = 0;
 		if($input != "") {
+			if(strpos($input, ',')) {
+				$input = str_replace('\n', ',', $input);
+			}
 			$numbers = explode(',', $input);		
 
 			if(sizeof($numbers) > 0) {

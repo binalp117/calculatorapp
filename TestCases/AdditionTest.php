@@ -55,5 +55,21 @@ class AdditionTest extends TestCase
         $calc->setOperation('add');
         $this->assertEquals($calc->process(), 133);
     }
+
+    public function testAdditionOfNumbersWithBreakline()
+    {
+        $calc = new CalculatorApp(new CalculatorImplementation);
+        $calc->processOperands('2\n3,4');
+        $calc->setOperation('sum');
+        $this->assertEquals($calc->process(), 9);
+    }
+
+    public function testAdditionOfNumbersWithBreaklineMore()
+    {
+        $calc = new CalculatorApp(new CalculatorImplementation);
+        $calc->processOperands('2\n3,4,5\n8');
+        $calc->setOperation('sum');
+        $this->assertEquals($calc->process(), 22);
+    }
 }
 ?>
