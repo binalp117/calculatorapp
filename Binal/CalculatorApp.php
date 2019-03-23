@@ -61,7 +61,7 @@ Class CalculatorApp
     	$negativeNumbers = $this->checkNegativeNumbers();
 
     	if(sizeof($negativeNumbers) > 0) {
-    		return "Negative numbers not allowed.";
+    		return "Negative numbers (".implode(',', $negativeNumbers).") not allowed.";
     	}
     	$result = 0;
 		switch ($this->operationName) {
