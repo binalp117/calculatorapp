@@ -5,7 +5,7 @@ Following are the steps to run this application on localhost
 1. Clone the repository in your directory:
 
 ```bash
-git clone https://github.com/binalp117/calculator.git
+git clone https://github.com/binalp117/calculatorapp.git
 ```
 
 2. Install the dependencies of the application using composer. Here we are using PHPUnit Test library to test the application. This application belives that composer is already installed in your system. If not install then use this guidline [Composer](https://getcomposer.org/download/)
