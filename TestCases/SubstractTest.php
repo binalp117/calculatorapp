@@ -71,5 +71,13 @@ class SubstractTest extends TestCase
         $calc->setOperation('substract');
         $this->assertEquals($calc->process(), -18);
     }
+
+    public function testAdditionOfNumbersWithDelimiters()
+    {
+        $calc = new CalculatorApp(new CalculatorImplementation);
+        $calc->processOperands('\\;\\3;4;5');
+        $calc->setOperation('substract');
+        $this->assertEquals($calc->process(), -12);
+    }
 }
 ?>

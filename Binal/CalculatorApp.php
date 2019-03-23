@@ -9,6 +9,7 @@ Class CalculatorApp
 	protected $operand2;
 	protected $calculator;
 	protected $operationName;
+	protected $delimiters = ['\n',';','\\'];
 
 	public function __construct(CalculatorInterface $calculator)
 	{
@@ -27,9 +28,7 @@ Class CalculatorApp
 		$number1 = 0;
 		$number2 = 0;
 		if($input != "") {
-			if(strpos($input, ',')) {
-				$input = str_replace('\n', ',', $input);
-			}
+			$input = $this->replaceDemiliters($input);
 			$numbers = explode(',', $input);		
 
 			if(sizeof($numbers) > 0) {
@@ -83,6 +82,16 @@ Class CalculatorApp
 		}	
 
 		return $result;
+	}
+
+	// Function to replace special delimiters with comma
+	protected function replaceDemiliters($string)
+	{
+		foreach ($this->delimiters as $value) {
+			$string = str_replace($value, ",", $string);
+		}
+
+		return $string;
 	}
 }
 ?>

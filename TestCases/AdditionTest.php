@@ -60,7 +60,7 @@ class AdditionTest extends TestCase
     {
         $calc = new CalculatorApp(new CalculatorImplementation);
         $calc->processOperands('2\n3,4');
-        $calc->setOperation('sum');
+        $calc->setOperation('add');
         $this->assertEquals($calc->process(), 9);
     }
 
@@ -68,8 +68,16 @@ class AdditionTest extends TestCase
     {
         $calc = new CalculatorApp(new CalculatorImplementation);
         $calc->processOperands('2\n3,4,5\n8');
-        $calc->setOperation('sum');
+        $calc->setOperation('add');
         $this->assertEquals($calc->process(), 22);
+    }
+
+    public function testAdditionOfNumbersWithDelimiters()
+    {
+        $calc = new CalculatorApp(new CalculatorImplementation);
+        $calc->processOperands('\\;\\3;4;5');
+        $calc->setOperation('add');
+        $this->assertEquals($calc->process(), 12);
     }
 }
 ?>
